@@ -12,7 +12,8 @@ namespace DL
     public class SqlDBKpop
     {
         static string connectionString
-           = "Data Source =LAPTOP-GSQAHJBR; Initial Catalog = KPOP_DB; Integrated Security = True;";
+            = "Server = tcp:20.2.38.141,1433; Database = KPOP_DB; User Id = sa; Password = integ2!";
+        //= "Data Source =LAPTOP-GSQAHJBR; Initial Catalog = KPOP_DB; Integrated Security = True;";
 
 
         SqlConnection sqlConnection;
