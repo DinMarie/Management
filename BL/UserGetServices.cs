@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DL;
+﻿using DL;
 using Modelsa;
 
-namespace BL
+namespace KpopBL
 {
     public class UserGetServices
     {
-        private List<Group> GetAllGroups()
+        public List<Group> GetAllGroups()
         {
             GroupInfo groupInfo = new GroupInfo();
             return groupInfo.GetGroups();
@@ -18,25 +13,26 @@ namespace BL
 
 
 
-        public Group GetGroup(string id, string name)
+        public List<Group> GetGroup(string Name)
         {
-            Group foundGroup = new Group();
+            List<Group> groups = new List<Group>();
+
             foreach (var group in GetAllGroups())
             {
-                if (group.ID == id && group.Name == name)
+                if (group.Name == Name)
                 {
-                    foundGroup = group;
+                    groups.Add(group);
                 }
             }
-            return foundGroup;
+            return groups;
         }
 
-        public Group GetGroup(string name)
+        public Group GetGroups(string GroupID, string Name)
         {
             Group foundGroup = new Group();
             foreach (var group in GetAllGroups())
             {
-                if (group.Name == name)
+                if (group.GroupID == GroupID && group.Name == Name)
                 {
                     foundGroup = group;
                 }

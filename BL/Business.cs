@@ -1,69 +1,56 @@
-﻿using System;
+﻿using Modelsa;
 using DL;
-using BL;
-using Modelsa;
 
 
-namespace BL
+namespace KpopBL
 {
     public class Business  //USERGET
     {
         validationSer ValidationSer = new validationSer();
-        UserGetServices Services = new UserGetServices();
-
-        public bool AddGroup(Group group)
-        {
-            bool result = false;
-            if (ValidationSer.CheckIfNameExists(group.Name))
-            {
-                //  result = group.AddGroup(group) > 0;
-                result = group != null;
-            }
-            return result;
-        }
+        GroupInfo Services = new GroupInfo();
 
         public bool CreateGroup(Group group)
         {
             bool result = false;
+            if (ValidationSer.CheckIfNameExists(group.Name))
+            {   
+                result = Services.AddGroup(group) > 0;
+            }
+            return result;
+        }
+
+        public bool CreateGroup(string GroupID, string Name)
+        {
+            Group group = new Group {  GroupID = GroupID, Name = Name };
+
+            return CreateGroup(group);
+        }
+
+        public bool UpdateGroup(Group group)
+        {
+            bool result = false;
 
             if (ValidationSer.CheckIfNameExists(group.Name))
             {
-                //     result = group.AddGroup(group);
-                result = group.Name != null;
+                result = Services.UpdateGroup(group) > 0;
 
             }
             return result;
         }
-        public bool CreateGroup(string ID, string Name)
+
+        public bool UpdateGroup(string GroupID, string Name)
         {
-            Group group = new Group { ID = ID, Name = Name };
+            Group group = new Group { GroupID = GroupID, Name = Name };
 
-            {
-                Group group1 = new Group { ID = ID, Name = Name };
-
-                return CreateGroup(group1);
-            }
+            return UpdateGroup(group);
         }
 
-        public bool updateGroup(Group group)
-        {
-            bool result = false;
-
-            if (ValidationSer.CheckIfIDExists(group.ID))
-            {
-                //  result = group.updateGroup(group) > 0;
-                result |= group.Name != null;
-
-            }
-            return result;
-        }
         public bool DeleteGroup(Group group)
         {
             bool result = false;
-            if (ValidationSer.CheckIfNameExists(group.ID))
+            if (ValidationSer.CheckIfNameExists(group.Name))
             {
-                //  result = group.DeleteGroup(group) > 0;
-                result = group == null;
+                result = Services.DeleteGroup(group) > 0;
             }
             return result;
         }

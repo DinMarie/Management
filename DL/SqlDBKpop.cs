@@ -9,39 +9,39 @@ using DL;
 
 namespace DL
 {
-    public class sqlDBKpop
+    public class SqlDBKpop
     {
         static string connectionString
-           = "Data Source =DESKTOP-UE2RTA0; Initial Catalog = KPOP_DB; Integrated Security = True;";
-
-        //SQLEXPRESS
+           = "Data Source =LAPTOP-GSQAHJBR; Initial Catalog = KPOP_DB; Integrated Security = True;";
 
 
-        static SqlConnection sqlConnection = new SqlConnection(connectionString);
+        SqlConnection sqlConnection;
 
-        public static void Connect()
+        public SqlDBKpop()
         {
-            sqlConnection.Open();
+            sqlConnection = new SqlConnection(connectionString);
         }
-
-
-        public static List<Group> GetGroups()
+        
+        public List<Group> GetGroups()
         {
-            string selectStatement = "SELECT ID, Kpop_Name FROM Kpop_GroupName";
+            string selectStatement = "SELECT GroupID, Name FROM Kpop_GroupName";
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, sqlConnection);
+
             sqlConnection.Open();
+            List<Group> group = new List<Group>();
+
             SqlDataReader reader = selectCommand.ExecuteReader();
 
-            List<Group> group = new List<Group>();
+            
             while (reader.Read())
             {
-                string ID = reader["ID"].ToString();
-                string Name = reader["Kpop_Name"].ToString();
+                string GroupID = reader["GroupID"].ToString();
+                string Name = reader["Name"].ToString();
 
 
                 Group readGroup = new Group();
-                readGroup.ID = ID;
+                readGroup.GroupID = GroupID;
                 readGroup.Name = Name;
 
                 group.Add(readGroup);
@@ -53,18 +53,18 @@ namespace DL
         }
 
 
-        public static int AddGroup(string ID, string Kpop_Name)
+        public int AddGroup(string GroupID, string Name)
 
         {
             int success;
 
-            string insertStatement = "INSERT INTO Kpop_GroupName VALUES (@ID, @Kpop_Name)";
-            sqlConnection.Open();
+            string insertStatement = "INSERT INTO Kpop_GroupName VALUES (@GroupID, @Name)";
+            
             SqlCommand insertCommand = new SqlCommand(insertStatement, sqlConnection);
 
-            insertCommand.Parameters.AddWithValue("@ID", ID);
-            insertCommand.Parameters.AddWithValue("@Kpop_Name", Kpop_Name);
-
+            insertCommand.Parameters.AddWithValue("@GroupID", GroupID);
+            insertCommand.Parameters.AddWithValue("@Name", Name);
+            sqlConnection.Open();
 
             success = insertCommand.ExecuteNonQuery();
             sqlConnection.Close();
@@ -75,16 +75,17 @@ namespace DL
 
         }
 
-        public int UpdateGroup(string ID, string Kpop_Name)
+        public int UpdateGroup(string GroupID, string Name)
         {
             int success;
 
+            
+            string UPDATE = $"UPDATE Kpop_GroupName SET Name = @Name WHERE GroupID = @GroupID";
+            SqlCommand updateCommand = new SqlCommand(UPDATE, sqlConnection);
             sqlConnection.Open();
-            string UPDATE = $"UPDATE Kpop_GroupName SET KpopName = @ID, @KpopName ";
-            SqlCommand updateCommand = new SqlCommand(@UPDATE, sqlConnection);
 
-            updateCommand.Parameters.AddWithValue("@ID", ID);
-            updateCommand.Parameters.AddWithValue("@Kpop_Name", Kpop_Name);
+            updateCommand.Parameters.AddWithValue("@GroupID", GroupID);
+            updateCommand.Parameters.AddWithValue("@Name", Name);
 
             success = updateCommand.ExecuteNonQuery();
             sqlConnection.Close();
@@ -94,16 +95,16 @@ namespace DL
             return success;
         }
 
-        public int DeleteGroup(string ID, string Kpop_Name)
+        public int DeleteGroup(string GroupID)
         {
             int success;
+            
+
+            string DELETE = $"DELETE FROM Kpop_GroupName WHERE GroupID = @GroupID";
+            SqlCommand delcom = new SqlCommand(DELETE, sqlConnection);
             sqlConnection.Open();
 
-            string DELETE = $"DELETE FROM Kpop_Group WHERE ID, Kpop_Name = @ID, @Kpop_Name";
-            SqlCommand delcom = new SqlCommand(@DELETE, sqlConnection);
-
-            delcom.Parameters.AddWithValue("@ID", ID);
-            delcom.Parameters.AddWithValue("@KpopName", Kpop_Name);
+            delcom.Parameters.AddWithValue("@GroupID", GroupID);
 
             success = delcom.ExecuteNonQuery();
 
