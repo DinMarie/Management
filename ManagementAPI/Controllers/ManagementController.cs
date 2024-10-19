@@ -29,7 +29,7 @@ namespace ManagementAPI.Controllers
             }
             return cont;
         }
-        [HttpPost]
+        [HttpPost("Add")]
         public JsonResult AddGroup(Group request)
         {
             var result = transactionService.CreateGroup(request.GroupID, request.Name);
@@ -38,7 +38,7 @@ namespace ManagementAPI.Controllers
 
         }
 
-        [HttpPatch]
+        [HttpPatch("Update")]
         public JsonResult UpdateGroup(Group request)
         {
             var result = transactionService.UpdateGroup(request.GroupID, request.Name);
