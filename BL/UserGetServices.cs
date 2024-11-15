@@ -11,8 +11,6 @@ namespace KpopBL
             return groupInfo.GetGroups();
         }
 
-
-
         public List<Group> GetGroup(string Name)
         {
             List<Group> groups = new List<Group>();
@@ -39,8 +37,6 @@ namespace KpopBL
             }
             return foundGroup;
         }
-
-
 
     }
 }
