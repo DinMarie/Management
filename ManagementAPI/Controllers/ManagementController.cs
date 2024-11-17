@@ -17,7 +17,7 @@ namespace ManagementAPI.Controllers //s3 added
 
         private readonly string _accessKey = "";
         private readonly string _secretKey = "";
-        private readonly string _bucketName = "jmnaval";
+        private readonly string _bucketName = "jmnaval"; //name
         private readonly AmazonS3Client _s3Client;
 
         public ManagementController()
