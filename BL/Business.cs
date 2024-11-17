@@ -6,7 +6,7 @@ namespace KpopBL
 {
     public class Business  //USERGET
     {
-        validationSer ValidationSer = new validationSer();
+        validationSer ValidationSer = new validationSer(); //
         GroupInfo Services = new GroupInfo();
 
         public bool CreateGroup(Group group)

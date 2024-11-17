@@ -9,7 +9,7 @@ namespace DL
         public GroupInfo()
         {
             groups = new List<Group>();
-            sqlData = new SqlDBKpop();
+            sqlData = new SqlDBKpop(); //
         }
 
         public List<Group> GetGroups()

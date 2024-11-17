@@ -8,7 +8,7 @@ namespace KpopBL
         public List<Group> GetAllGroups()
         {
             GroupInfo groupInfo = new GroupInfo();
-            return groupInfo.GetGroups();
+            return groupInfo.GetGroups(); //
         }
 
 

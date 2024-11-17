@@ -6,7 +6,7 @@ using KpopBL;
 namespace Client
 {
     internal class Program
-    {
+    { //
         static void Main(string[] args)
         {
             UserGetServices getServices = new UserGetServices();

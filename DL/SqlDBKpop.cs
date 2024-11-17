@@ -19,7 +19,7 @@ namespace DL
 
 
 
-        SqlConnection sqlConnection;
+        SqlConnection sqlConnection;  //
 
         public SqlDBKpop()
         {
