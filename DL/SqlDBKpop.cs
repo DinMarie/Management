@@ -13,8 +13,8 @@ namespace DL
     {
         static string connectionString
         //  = "Server = tcp:20.2.249.96,1433; Database = KPOP_DB; User Id = sa; Password = integ2!";
-        //= "Data Source =LAPTOP-GSQAHJBR; Initial Catalog = KPOP_DB; Integrated Security = True;";
-        = "Data Source =LAPTOP-LGBEJ5GN\\SQLEXPRESS02; Initial Catalog = KPOP_DB; Integrated Security = True;";
+        = "Data Source =LAPTOP-GSQAHJBR; Initial Catalog = KPOP_DB; Integrated Security = True;";
+        //= "Data Source =LAPTOP-LGBEJ5GN\\SQLEXPRESS02; Initial Catalog = KPOP_DB; Integrated Security = True;";
 
 
 
