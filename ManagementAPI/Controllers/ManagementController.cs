@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ManagementAPI.Controllers //s3 added 
 {
     [ApiController]
-    [Route("api/group")]
+    [Route("api/group")] //
     public class ManagementController : ControllerBase
     {
         UserGetServices getServices;
