@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace ManagementAPI.Controllers
+namespace ManagementAPI.Controllers //s3 added 
 {
     [ApiController]
     [Route("api/group")]
